@@ -3,7 +3,7 @@ var router = express.Router();
 
 Customer = require('../models/customer.js');
 Invoice = require('../models/invoice.js');
-//Get all customers
+//Get all Invoices
 // this actually goes to api/customers
 router.get('/', function(req, res) {
   Invoice.getInvoices(function(err, invoices) {
