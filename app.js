@@ -3,8 +3,10 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-//Mongoose Connect
+var customers = require('./routes/customers');
+var invoices = require('./routes/invoices');
 
+//Mongoose Connect
 mongoose.connect('mongodb://localhost/invoicr');
 var db = mongoose.connection;
 
@@ -12,9 +14,11 @@ app.use(express.static(__dirname + '/client'));
 app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
-  res.send('Helllllllo Thhheree!');
+  res.send('Please use /api/customers or /api/invoices!');
 });
 
+app.use('/api/customers', customers);
+app.use('/api/invoices', invoices); 
 
 app.listen(3000);
-console.log("started on port 3000"); 
+console.log("started on port 3000");
